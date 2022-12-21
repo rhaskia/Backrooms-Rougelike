@@ -34,14 +34,14 @@ public class MapGenerator : MonoBehaviour
     public LevelInfo level;
 
     [Header("Level 0")]
-    [Range(0f, 1f)]
-    public float l0_wallAmount;
     public LevelInfo l0;
+    [Range(0f, 1f)]
+    public float l0_wallAmount, l0_pillarAmount, l0_holeAmount;
 
     [Header("Level 1")]
+    public LevelInfo l1;
     [Range(0f, 1f)]
     public float l1_roomAmount;
-    public LevelInfo l1;
 
     [Header("Level 2")]
     public LevelInfo l2;
@@ -51,7 +51,7 @@ public class MapGenerator : MonoBehaviour
     {
         Instance = this;
 
-        level = l0;
+        level = l1;
         MapGeneration(0, 0);
     }
 
@@ -83,16 +83,36 @@ public class MapGenerator : MonoBehaviour
         if (Random.Range(0, l0.ladderRarity) == 0) return 2;
 
         //Holes
-        //Random.InitState(CantorPair(Mathf.FloorToInt(x / 7), Mathf.FloorToInt(y / 7)));
-        //bool hole = Random.Range(0, 5) == 0;
-        //if (x % 2 == 0 && y % 2 == 0 && hole) return 3;
+        Random.InitState(CantorPair(Mathf.FloorToInt(x / 7), Mathf.FloorToInt(y / 7)));
+        bool hole = Random.Range(0, 5) == 0;
+        if (Random.Range(0f, 1f) < l0_holeAmount && (x % 2 == 0 || y % 2 == 0)) return 3;
+
+        //Pillars
+        Random.InitState(CantorPair(x, y));
+        if (Random.Range(0f, 1f) < l0_pillarAmount) return 1;
 
         return 0;
     }
 
     int Level1(int x, int y)
     {
-        if (x % 5 == 0 && y % 3 == 0) return 1;
+        //Pillars
+        if (x % 5 == 0 && y % 4 == 0) return 1;
+
+        //Rooms
+        Random.InitState(CantorPair(x, Mathf.FloorToInt((y) / 4)));
+        bool randX = Random.Range(0f, 1f) < l1_roomAmount;
+        Random.InitState(CantorPair(x + 5, Mathf.FloorToInt((y) / 4)));
+        randX = randX || Random.Range(0f, 1f) < l1_roomAmount;
+
+        //Rooms
+        Random.InitState(CantorPair(Mathf.FloorToInt((x) / 5), Mathf.FloorToInt((y) / 4)));
+        bool randY = Random.Range(0f, 1f) < l1_roomAmount;
+        Random.InitState(CantorPair(Mathf.FloorToInt((x) / 5), Mathf.FloorToInt((y - 4) / 4)));
+        randY = randY || Random.Range(0f, 1f) < l1_roomAmount;
+
+        if (x % 5 == 0 && randX) return 1;
+        if (y % 4 == 0 && randY) return 1;
 
         return 0;
     }

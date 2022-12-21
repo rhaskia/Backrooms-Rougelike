@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource footsteps, pickupItem, hit;
+    public AudioSource footsteps, pickupItem, hit, newLevel;
 
     // Start is called before the first frame update
     void Start()
@@ -20,11 +20,21 @@ public class SoundManager : MonoBehaviour
 
     public void PlayFootsteps()
     {
-        footsteps.Play();
+        if (!footsteps.isPlaying) footsteps.Play();
     }
 
     public void PlayPickup()
     {
-        pickupItem.Play();
+        if (!pickupItem.isPlaying) pickupItem.Play();
+    }
+
+    public void PlayHit()
+    {
+        if (!hit.isPlaying) hit.Play();
+    }
+
+    public void PlayNewLevel()
+    {
+        if (!newLevel.isPlaying) newLevel.Play();
     }
 }

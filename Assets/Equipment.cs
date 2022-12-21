@@ -63,14 +63,18 @@ public class Equipment : MonoBehaviour
     {
         if (n == 0)
         {
+            if (weapon == null) return;
+
             GUIManager.Instance.Print("You unequipped the <color=#" + ColorUtility.ToHtmlStringRGB(weapon.nameColor) + ">" + weapon.name + "</color>");
             GUIManager.Instance.Print("You lost " + weapon.strength + " attack.");
 
             weapon = null;
         }
 
-        if (n == 0)
+        if (n == 1)
         {
+            if (armour == null) return;
+
             GUIManager.Instance.Print("You unequipped the <color=#" + ColorUtility.ToHtmlStringRGB(armour.nameColor) + ">" + armour.name + "</color>");
             GUIManager.Instance.Print("You lost " + armour.strength + " defense.");
 
