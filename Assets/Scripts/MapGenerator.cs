@@ -16,12 +16,14 @@ public class LevelInfo
     public int ladderRarity, monsterRarity, itemRarity;
     public WeightedItem[] monsters, items;
     public float lighting = 150f;
+    public AudioReverbPreset reverbPreset;
 }
 
 public class MapGenerator : MonoBehaviour
 {
     public static MapGenerator Instance;
     public Light pointLight;
+    public AudioReverbZone reverb;
 
     [Header("Map Info")]
     public Vector2 mapSize;
@@ -36,22 +38,31 @@ public class MapGenerator : MonoBehaviour
     [Header("Level 0")]
     public LevelInfo l0;
     [Range(0f, 1f)]
-    public float l0_wallAmount, l0_pillarAmount, l0_holeAmount;
+    public float l0_wallAmount;
+    [Range(0f, .1f)]
+    public float l0_pillarAmount, l0_holeAmount;
 
     [Header("Level 1")]
     public LevelInfo l1;
-    [Range(0f, 1f)]
-    public float l1_roomAmount;
+    [Range(0f, .1f)]
+    public float l1_roomAmount, l1_doorAmount;
 
     [Header("Level 2")]
     public LevelInfo l2;
+    [Range(0f, .1f)]
+    public float l2_blockAmount, l2_doorAmount;
+
+    [Header("Level 3")]
+    public LevelInfo l3;
+    [Range(0f, 1f)]
+    public float l3_blockAmount;
 
     // Start is called before the first frame update
     void Start()
     {
         Instance = this;
 
-        level = l1;
+        level = l0;
         MapGeneration(0, 0);
     }
 
@@ -59,6 +70,7 @@ public class MapGenerator : MonoBehaviour
     void Update()
     {
         pointLight.intensity = level.lighting;
+        reverb.reverbPreset = level.reverbPreset;
     }
 
     int Level0(int x, int y)
@@ -111,6 +123,11 @@ public class MapGenerator : MonoBehaviour
         Random.InitState(CantorPair(Mathf.FloorToInt((x) / 5), Mathf.FloorToInt((y - 4) / 4)));
         randY = randY || Random.Range(0f, 1f) < l1_roomAmount;
 
+        //Doors
+        Random.InitState(CantorPair(x, y));
+        if (y % 4 == 0 && randY && Random.Range(0f, 1f) < l1_roomAmount)
+            return 2;
+
         if (x % 5 == 0 && randX) return 1;
         if (y % 4 == 0 && randY) return 1;
 
@@ -119,10 +136,16 @@ public class MapGenerator : MonoBehaviour
 
     int Level2(int x, int y)
     {
-        if (x % 10 > 1) return 1;
-        if (y % 10 > 1) return 1;
+        if ((x % 10 == 0 || x % 10 == 1) && (y % 10 == 0 || y % 10 == 1)) return 0;
 
-        return 0;
+        //Random Blockages
+        Random.InitState(CantorPair(x, y));
+        if (Random.Range(0f, 1f) < l2_blockAmount) return 1;
+
+        if (x % 10 == 0 || x % 10 == 1 || x % 10 == 5) return 0;
+        if (y % 10 == 0 || y % 10 == 1 || y % 10 == 5) return 0;
+
+        return 1;
     }
 
     public void GenerateNew(int x, int y, int a, int b)
@@ -194,6 +217,13 @@ public class MapGenerator : MonoBehaviour
     void Generate(int x, int y)
     {
         int tile = GetTile(x, y);
+
+        switch (floor)
+        {
+            case 0: level = l0; break;
+            case 1: level = l1; break;
+            case 2: level = l2; break;
+        }
 
         if (tile == 0)
         {

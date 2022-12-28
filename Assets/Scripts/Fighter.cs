@@ -6,6 +6,8 @@ using TMPro;
 
 public class Fighter : MonoBehaviour
 {
+    public bool canAttack = true;
+
     public string gameName;
     public Color nameColor;
 
@@ -26,6 +28,7 @@ public class Fighter : MonoBehaviour
     public TextMeshProUGUI damageText;
     public float fadeTimeDMG;
     public Color DMGColor, critColor;
+
 
     // Start is called before the first frame update
     void Start()

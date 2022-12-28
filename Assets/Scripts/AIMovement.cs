@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class AIMovement : MonoBehaviour
 {
+    public bool canWalk = true;
+
     public Vector2 position;
     public float lerpSpeed = 0.125f;
     public float walkDist = 10;
 
     public Fighter fighter;
     public GameObject remainsPrefab;
+    public AreaAttack areaAttack;
+
+    public GameObject sprite;
 
     // Start is called before the first frame update
     void Start()
@@ -80,10 +85,17 @@ public class AIMovement : MonoBehaviour
         //Attacking if close to player
         if (newPos + position == PlayerMovement.Instance.position)
         {
-            fighter.Attack(PlayerMovement.Instance.GetComponent<Fighter>());
+            if (fighter.canAttack) fighter.Attack(PlayerMovement.Instance.GetComponent<Fighter>());
         }
+        else
+        {
+            if (MapGenerator.Instance.GetTile((int)(position.x + newPos.x), (int)(position.y + newPos.y)) == 0 && canWalk)
+            {
+                position = position + newPos;
+                sprite.transform.localScale = new Vector3(-newPos.x, 1, 1);
+            }
 
-        else if (MapGenerator.Instance.GetTile((int)(position.x + newPos.x), (int)(position.y + newPos.y)) == 0)
-            position = position + newPos;
+            if (areaAttack != null) areaAttack.OnMove();
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     Inventory inventory;
 
     public Vector2 position;
+    public float moveDelay;
+    float[] tilMove = new float[4];
     public float lerpSpeed;
     MapGenerator mapGen;
 
@@ -20,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public int dashWait;
     int movesLeft;
     public int dashes;
+    public TextMeshProUGUI dashText;
 
     // Start is called before the first frame update
     void Awake()
@@ -34,24 +38,34 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Dash UI
+        dashText.color = dashes > 0 ? Color.white : Color.grey;
+
         //WASD
-        if (Input.GetKeyDown(KeyCode.W)) Move(0, 1);
-        if (Input.GetKeyDown(KeyCode.S)) Move(0, -1);
-        if (Input.GetKeyDown(KeyCode.A)) Move(-1, 0);
-        if (Input.GetKeyDown(KeyCode.D)) Move(1, 0);
+        //Holding down keys
+        if (Input.GetKey(KeyCode.W) && tilMove[0] < 0) { Move(0, 1); tilMove[0] = moveDelay; }
+        if (Input.GetKey(KeyCode.S) && tilMove[1] < 0) { Move(0, -1); tilMove[1] = moveDelay; }
+        if (Input.GetKey(KeyCode.A) && tilMove[2] < 0) { Move(-1, 0); tilMove[2] = moveDelay; }
+        if (Input.GetKey(KeyCode.D) && tilMove[3] < 0) { Move(1, 0); tilMove[3] = moveDelay; }
 
         //Numpad Keys
-        if (Input.GetKeyDown(KeyCode.Keypad8)) Move(0, 1);
-        if (Input.GetKeyDown(KeyCode.Keypad2)) Move(0, -1);
-        if (Input.GetKeyDown(KeyCode.Keypad4)) Move(-1, 0);
-        if (Input.GetKeyDown(KeyCode.Keypad6)) Move(1, 0);
+        //if (Input.GetKeyDown(KeyCode.Keypad8)) Move(0, 1);
+        //if (Input.GetKeyDown(KeyCode.Keypad2)) Move(0, -1);
+        //if (Input.GetKeyDown(KeyCode.Keypad4)) Move(-1, 0);
+        //if (Input.GetKeyDown(KeyCode.Keypad6)) Move(1, 0);
 
-        if (Input.GetKeyDown(KeyCode.Keypad7)) Move(-1, -1);
-        if (Input.GetKeyDown(KeyCode.Keypad9)) Move(1, 1);
-        if (Input.GetKeyDown(KeyCode.Keypad1)) Move(-1, 1);
-        if (Input.GetKeyDown(KeyCode.Keypad3)) Move(1, -1);
+        //if (Input.GetKeyDown(KeyCode.Keypad7)) Move(-1, -1);
+        //if (Input.GetKeyDown(KeyCode.Keypad9)) Move(1, 1);
+        //if (Input.GetKeyDown(KeyCode.Keypad1)) Move(-1, 1);
+        //if (Input.GetKeyDown(KeyCode.Keypad3)) Move(1, -1);
 
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(position.x, 0, position.y), lerpSpeed);
+
+        //Move delays
+        for (int i = 0; i < tilMove.Length; i++)
+        {
+            tilMove[i] -= Time.deltaTime;
+        }
     }
 
     void Move(int x, int y)
