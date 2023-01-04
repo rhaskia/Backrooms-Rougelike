@@ -59,6 +59,20 @@ public class PlayerManager : MonoBehaviour
         {
             equipment.EquipWeapon(item);
         }
+
+        //Equiping Tools
+        if (item.use == 4)
+        {
+
+        }
+
+        //Moth Jelly
+        if (item.use == 5)
+        {
+            PlayerMovement.Instance.dashes += (int)item.strength;
+            GUIManager.Instance.Print("You use the <color=#" + ColorUtility.ToHtmlStringRGB(item.nameColor) + ">" + item.name + "</color>");
+            GUIManager.Instance.Print("You feel extremely energetic");
+        }
     }
 
     public void Upgrade(int u)

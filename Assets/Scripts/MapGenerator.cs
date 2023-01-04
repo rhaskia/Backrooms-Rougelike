@@ -148,6 +148,21 @@ public class MapGenerator : MonoBehaviour
         return 1;
     }
 
+    int Level3(int x, int y)
+    {
+        Random.InitState(CantorPair(x, y));
+        if (y % 8 == 1 && x % 9 == Random.Range(4, 5) && Random.Range(0, 2) == 0) return 1;
+        if (y % 8 == 7 && x % 9 == Random.Range(4, 5) && Random.Range(0, 2) == 0) return 1;
+
+        if (x % 9 > 1 && x % 9 < 8 && y % 8 > 1 && y % 8 < 7) return 1;
+        if (!(x % 9 == 0 || y % 8 == 0)) return 1;
+
+        //if random.randint(0, 20) == 0: return 1
+
+        return 0;
+
+    }
+
     public void GenerateNew(int x, int y, int a, int b)
     {
         if (a == -1) GenerateLeft(x, y);
