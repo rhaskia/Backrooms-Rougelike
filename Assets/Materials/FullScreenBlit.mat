@@ -47,13 +47,14 @@ Material:
     m_Floats:
     - _CRT: 0.8
     - _Grid_Cell_Offset: 0
-    - _Noise: 0.15
+    - _Noise: 0.06087789
     - _NoiseSpeed: 0.001
     - _PostSteps: 6
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ScanlinesStrength: 0
-    - _SphereStrength: 1.8
+    - _SphereStrength: 0.6791243
+    - _Strength: 1
     m_Colors:
     - _Grid_Tiling: {r: 5, g: 5, b: 0, a: 0}
     - _PixelSize: {r: 320, g: 180, b: 0, a: 0}

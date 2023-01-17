@@ -10,7 +10,8 @@ public class GUIManager : MonoBehaviour
     public static GUIManager Instance;
 
     [Header("Stats")]
-    public TextMeshProUGUI hp, defence, power, messagesText;
+    public TextMeshProUGUI hp;
+    public TextMeshProUGUI defence, power, messagesText, poison, bleeding;
 
     [Header("Sub Menu")]
     public RectTransform menu;
@@ -26,13 +27,16 @@ public class GUIManager : MonoBehaviour
 
     PlayerManager p_manager;
     Fighter p_fighter;
-    string messages;
+    public string messages;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Instance = this;
+    }
 
+    private void Start()
+    {
         p_fighter = PlayerMovement.Instance.GetComponent<Fighter>();
         p_manager = PlayerMovement.Instance.GetComponent<PlayerManager>();
     }
@@ -51,6 +55,12 @@ public class GUIManager : MonoBehaviour
         upgrades.SetActive(p_manager.points > 0);
 
         messagesText.text = messages;
+
+        poison.gameObject.SetActive(p_fighter.poison.afflicted);
+        poison.text = "poisoned - " + p_fighter.poison.afflictionLeft;
+
+        bleeding.gameObject.SetActive(p_fighter.bleeding.afflicted);
+        bleeding.text = "bleeding - " + p_fighter.bleeding.afflictionLeft;
 
         //Opening sub menus
         if (Input.GetKeyDown(KeyCode.L))
@@ -101,6 +111,6 @@ public class GUIManager : MonoBehaviour
 
     public void Print(string message)
     {
-        messages = message.ToLower() + "\n" + messages;
+        messages = messages + "\n" + message.ToLower();
     }
 }

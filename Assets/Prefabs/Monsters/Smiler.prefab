@@ -263,10 +263,12 @@ MonoBehaviour:
   position: {x: 0, y: 4}
   lerpSpeed: 1
   walkDist: 7
+  runDist: 15
   fighter: {fileID: 4537690757583417673}
   remainsPrefab: {fileID: 6817940403122566127, guid: d85c02bfc21dad9499c9c578c6ca6f31, type: 3}
   areaAttack: {fileID: -6347391483578234751}
   sprite: {fileID: 0}
+  memoryAmount: 0
 --- !u!114 &4537690757583417672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,10 +296,10 @@ MonoBehaviour:
   canAttack: 1
   gameName: the smiler
   nameColor: {r: 0.44335175, g: 0.47174907, b: 0.764151, a: 1}
-  health: 20
-  maxHealth: 20
+  health: 15
+  maxHealth: 15
   defense: 0
-  power: 5
+  power: 3
   critRarity: 10
   critMult: 1.5
   deathFunction:
@@ -315,12 +317,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  xp: 100
+  xp: 50
   lastAttacked: 0
   damageText: {fileID: 4816830448564708647}
   fadeTimeDMG: 1
   DMGColor: {r: 1, g: 0.7028302, b: 0.7028302, a: 0}
   critColor: {r: 0.6603774, g: 0.052954797, b: 0.052954797, a: 0}
+  poisonCol: {r: 0.2784314, g: 0.7137255, b: 0.29411766, a: 0}
+  killCount: 0
+  poisons: 1
 --- !u!114 &-6347391483578234751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,7 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minDist: 6
-  damageMap: {x: 1, y: 1}
+  damageMap: {x: 2, y: 2}
   hurtMessage: you feel a strange aura attack you
 --- !u!1 &4895355559960250193
 GameObject:

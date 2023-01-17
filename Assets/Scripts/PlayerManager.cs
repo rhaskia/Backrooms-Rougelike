@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -13,6 +14,10 @@ public class PlayerManager : MonoBehaviour
     public float xp;
     public int level = 1;
     public int points;
+
+    public GameObject deathMenu;
+    public TextMeshProUGUI deathText;
+    public bool dead;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +34,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (xp > 200 + 150 * level)
         {
-            GUIManager.Instance.Print("<color=#45ffff>You grow stronger...</color>");
+            GUIManager.Instance.Print("<color=#72a5b1>You grow stronger...</color>");
             GUIManager.Instance.OpenLevels();
 
             points++;
@@ -63,7 +68,7 @@ public class PlayerManager : MonoBehaviour
         //Equiping Tools
         if (item.use == 4)
         {
-
+            equipment.EquipTool(item);
         }
 
         //Moth Jelly
@@ -72,6 +77,43 @@ public class PlayerManager : MonoBehaviour
             PlayerMovement.Instance.dashes += (int)item.strength;
             GUIManager.Instance.Print("You use the <color=#" + ColorUtility.ToHtmlStringRGB(item.nameColor) + ">" + item.name + "</color>");
             GUIManager.Instance.Print("You feel extremely energetic");
+        }
+
+        //Harm
+        if (item.use == 6)
+        {
+            if (equipment.tool.name == "Squirt Gun")
+            {
+
+            }
+            else
+            {
+                fighter.health -= item.strength;
+                GUIManager.Instance.Print("You use the <color=#" + ColorUtility.ToHtmlStringRGB(item.nameColor) + ">" + item.name + "</color>");
+                GUIManager.Instance.Print("<color=#cb593a>You take " + item.strength.ToString() + " damage.</color>");
+            }
+        }
+
+        //Antidotes
+        if (item.use == 7)
+        {
+            fighter.poison.afflictionLeft = 0;
+            fighter.bleeding.afflictionLeft = 0;
+            GUIManager.Instance.Print("You use the <color=#" + ColorUtility.ToHtmlStringRGB(item.nameColor) + ">" + item.name + "</color>");
+            GUIManager.Instance.Print("You feel much better.");
+        }
+
+        //Sanity Increase
+        if (item.use == 8)
+        {
+            //sanity
+        }
+
+        //Defense Increase
+        if (item.use == 9)
+        {
+            fighter.defense += item.strength;
+            GUIManager.Instance.Print("You feel much stronger.");
         }
     }
 
@@ -84,5 +126,14 @@ public class PlayerManager : MonoBehaviour
         points--;
 
         if (points < 1) GUIManager.Instance.menuOpen = false;
+    }
+
+    public void Death()
+    {
+        dead = true;
+
+        deathMenu.SetActive(true);
+        deathText.text = "you made it to level " + MapGenerator.Instance.floor.ToString() + "\n\nyou had " + fighter.maxHealth.ToString() + " health\n" + fighter.power.ToString() + " power, " + fighter.defense.ToString() + " defense\n\n"
+            + "you defeated " + fighter.killCount + " enemies\nand gathered " + inventory.totalItems + " items";
     }
 }

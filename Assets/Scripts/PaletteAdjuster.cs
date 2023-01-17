@@ -14,22 +14,34 @@ public class PaletteAdjuster : MonoBehaviour
     Color[] palette;
 
     public ColorLookup lut;
+    public ChromaticAberration chrom;
     public Texture2D defaultLUT;
     public Texture2D save;
     public RawImage image;
     Volume v;
+    public bool active;
+
+    private void Awake()
+    {
+        Instance = this;
+        //DontDestroyOnLoad(gameObject);
+
+        v = GetComponent<Volume>();
+        v.profile.TryGet(out lut);
+        v.profile.TryGet(out chrom);
+    }
+
 
     void Start()
     {
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
         ManagePalette();
     }
 
     private void Update()
     {
         if (oldPallete != paletteImage) ManagePalette();
+
+        lut.active = active;
     }
 
     public void ManagePalette()
@@ -37,8 +49,7 @@ public class PaletteAdjuster : MonoBehaviour
         palette = paletteImage.GetPixels();
         oldPallete = paletteImage;
 
-        v = GetComponent<Volume>();
-        v.profile.TryGet(out lut);
+        lut.active = active;
 
         lut.texture.value = EditTexture(defaultLUT);
 

@@ -6,10 +6,12 @@ public class SoundManager : MonoBehaviour
 {
     public AudioSource footsteps, pickupItem, hit, newLevel;
 
+    public static SoundManager Instance;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        Instance = this;
     }
 
     // Update is called once per frame
@@ -36,5 +38,10 @@ public class SoundManager : MonoBehaviour
     public void PlayNewLevel()
     {
         if (!newLevel.isPlaying) newLevel.Play();
+    }
+
+    public void PlayClip(AudioSource audio)
+    {
+        if (!audio.isPlaying) audio.Play();
     }
 }

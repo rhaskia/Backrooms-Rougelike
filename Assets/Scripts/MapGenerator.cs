@@ -54,8 +54,9 @@ public class MapGenerator : MonoBehaviour
 
     [Header("Level 3")]
     public LevelInfo l3;
-    [Range(0f, 1f)]
-    public float l3_blockAmount;
+
+    [Header("Level 4")]
+    public LevelInfo l4;
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +64,7 @@ public class MapGenerator : MonoBehaviour
         Instance = this;
 
         level = l0;
-        MapGeneration(0, 0);
+        MapGeneration((int)PlayerMovement.Instance.position.x, (int)PlayerMovement.Instance.position.y);
     }
 
     // Update is called once per frame
@@ -97,7 +98,7 @@ public class MapGenerator : MonoBehaviour
         //Holes
         Random.InitState(CantorPair(Mathf.FloorToInt(x / 7), Mathf.FloorToInt(y / 7)));
         bool hole = Random.Range(0, 5) == 0;
-        if (Random.Range(0f, 1f) < l0_holeAmount && (x % 2 == 0 || y % 2 == 0)) return 3;
+        if (Random.Range(0f, 1f) < l0_holeAmount && ((x + y) % 2 == 0)) return 3;
 
         //Pillars
         Random.InitState(CantorPair(x, y));
@@ -151,16 +152,62 @@ public class MapGenerator : MonoBehaviour
     int Level3(int x, int y)
     {
         Random.InitState(CantorPair(x, y));
-        if (y % 8 == 1 && x % 9 == Random.Range(4, 5) && Random.Range(0, 2) == 0) return 1;
-        if (y % 8 == 7 && x % 9 == Random.Range(4, 5) && Random.Range(0, 2) == 0) return 1;
+        if (y % 8 == 1 && x % 9 == Random.Range(4, 5) && Random.Range(0, 2) == 0) return 0;
+        if (y % 8 == 7 && x % 9 == Random.Range(4, 5) && Random.Range(0, 2) == 0) return 0;
 
-        if (x % 9 > 1 && x % 9 < 8 && y % 8 > 1 && y % 8 < 7) return 1;
+        bool room = x % 9 > 1 && x % 9 < 8 && y % 8 > 1 && y % 8 < 7;
+
+        if (room && Random.Range(0, 10) == 0) return 5; //Machines
+
+        if (room) return 0;
         if (!(x % 9 == 0 || y % 8 == 0)) return 1;
 
-        //if random.randint(0, 20) == 0: return 1
+        if (Random.Range(0, 20) == 0) return 4; //Gates
 
         return 0;
+    }
 
+    int Level4(int x, int y)
+    {
+        bool randY = false;
+
+        for (int i = 0; i < 3; i++)
+        {
+            Random.InitState(y - i);
+            randY = randY || Random.Range(0, 6) == 0;
+        }
+
+        bool randX = false;
+
+        for (int i = 0; i < 3; i++)
+        {
+            Random.InitState(x - i);
+            randX = randX || Random.Range(0, 6) == 0;
+        }
+
+        Random.InitState(x);
+        if (x % Random.Range(5, 8) == 0 && randY) return 0;
+        Random.InitState(y);
+        if (y % Random.Range(5, 8) == 0 && randX) return 0;
+
+        Random.InitState(x + 1);
+        bool surrY = (x + 1) % Random.Range(5, 8) != 0;
+        Random.InitState(x - 1);
+        surrY = surrY && (x - 1) % Random.Range(5, 8) != 0;
+
+        if (x % 10 == 0) return 4;
+        if (y % 10 == 0) return 4;
+
+        if (x % 2 == 0 && randY && surrY) return 0;//4
+        if (y % 2 == 0 && randX) return 0;//4
+
+        if (randY) return 0;
+        if (randX) return 0;
+
+        Random.InitState(CantorPair(x, y));
+        //if (Random.Range(0, 30) == 0) return 4;
+
+        return 1;
     }
 
     public void GenerateNew(int x, int y, int a, int b)
@@ -224,6 +271,8 @@ public class MapGenerator : MonoBehaviour
             case 0: item = Level0(x, y); break;
             case 1: item = Level1(x, y); break;
             case 2: item = Level2(x, y); break;
+            case 3: item = Level3(x, y); break;
+            case 4: item = Level4(x, y); break;
         }
 
         return item;
@@ -238,6 +287,9 @@ public class MapGenerator : MonoBehaviour
             case 0: level = l0; break;
             case 1: level = l1; break;
             case 2: level = l2; break;
+            case 3: level = l3; break;
+            case 4: level = l4; break;
+            case -1: return;
         }
 
         if (tile == 0)

@@ -261,10 +261,12 @@ MonoBehaviour:
   position: {x: 0, y: 4}
   lerpSpeed: 1
   walkDist: 7
+  runDist: 15
   fighter: {fileID: 3269062169643780570}
   remainsPrefab: {fileID: 6817940403122566127, guid: d85c02bfc21dad9499c9c578c6ca6f31, type: 3}
   areaAttack: {fileID: 0}
   sprite: {fileID: 4618257463450993529}
+  memoryAmount: 0
 --- !u!114 &3269062169643780571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,10 +294,10 @@ MonoBehaviour:
   canAttack: 1
   gameName: the hound
   nameColor: {r: 0.8509804, g: 0.72116476, b: 0.54901963, a: 1}
-  health: 20
-  maxHealth: 20
+  health: 25
+  maxHealth: 25
   defense: 1
-  power: 6
+  power: 5
   critRarity: 10
   critMult: 1.5
   deathFunction:
@@ -319,6 +321,9 @@ MonoBehaviour:
   fadeTimeDMG: 1
   DMGColor: {r: 1, g: 0.7028302, b: 0.7028302, a: 0}
   critColor: {r: 0.6603774, g: 0.052954797, b: 0.052954797, a: 0}
+  poisonCol: {r: 0.2784314, g: 0.7137255, b: 0.29411766, a: 0}
+  killCount: 0
+  poisons: 1
 --- !u!1 &4618257463450993529
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4618257463450993529}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.095, y: 0, z: -1.707}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -371,7 +376,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5a7824fcc9ab9414783bdff6d5aa5995, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

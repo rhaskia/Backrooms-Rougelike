@@ -608,10 +608,12 @@ MonoBehaviour:
   position: {x: 0, y: 4}
   lerpSpeed: 1
   walkDist: 7
+  runDist: 15
   fighter: {fileID: 8614899195927868238}
   remainsPrefab: {fileID: 6817940403122566127, guid: d85c02bfc21dad9499c9c578c6ca6f31, type: 3}
   areaAttack: {fileID: 0}
   sprite: {fileID: 1929536409024477677}
+  memoryAmount: 0
 --- !u!114 &8614899195927868239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -642,7 +644,7 @@ MonoBehaviour:
   health: 20
   maxHealth: 20
   defense: 0
-  power: 5
+  power: 4
   critRarity: 10
   critMult: 1.5
   deathFunction:
@@ -660,9 +662,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  xp: 100
+  xp: 30
   lastAttacked: 0
   damageText: {fileID: 842042677980374816}
   fadeTimeDMG: 1
   DMGColor: {r: 1, g: 0.7028302, b: 0.7028302, a: 0}
   critColor: {r: 0.6603774, g: 0.052954797, b: 0.052954797, a: 0}
+  poisonCol: {r: 0.2784314, g: 0.7137255, b: 0.29411766, a: 0}
+  killCount: 0
+  poisons: 1

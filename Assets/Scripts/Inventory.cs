@@ -1,15 +1,18 @@
-using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
     public List<Item> inventory = new List<Item>();
     public Transform MapGen;
+    public int totalItems;
+    public GameObject info;
 
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame
@@ -23,6 +26,7 @@ public class Inventory : MonoBehaviour
         PlayerManager.Instance.UseItem(inventory[n]);
 
         if (inventory[n].use != 0) inventory.RemoveAt(n);
+        info.SetActive(false);
     }
 
     public void DropItem(int n)
@@ -31,10 +35,19 @@ public class Inventory : MonoBehaviour
         item.transform.position = PlayerMovement.Instance.transform.position;
 
         inventory.RemoveAt(n);
+        info.SetActive(false);
     }
 
     public void PickUp(ItemHolder item)
     {
+        if (inventory.Count == 8)
+        {
+            GUIManager.Instance.Print("inventory full!");
+            return;
+        }
+
+        totalItems++;
+
         inventory.Add(item.item);
 
         if (isVowel(item.item.name.ToLower()[0]))

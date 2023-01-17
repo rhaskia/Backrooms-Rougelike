@@ -9,12 +9,18 @@ public class AIMovement : MonoBehaviour
     public Vector2 position;
     public float lerpSpeed = 0.125f;
     public float walkDist = 10;
+    public float runDist = 15;
 
     public Fighter fighter;
     public GameObject remainsPrefab;
     public AreaAttack areaAttack;
 
     public GameObject sprite;
+
+    bool heardRecently;
+    public float memoryAmount;
+    float memory;
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,13 +47,22 @@ public class AIMovement : MonoBehaviour
         GUIManager.Instance.Print("You gain " + fighter.xp + " XP.");
         Instantiate(remainsPrefab, transform.position, remainsPrefab.transform.rotation);
         PlayerManager.Instance.xp += fighter.xp;
+        PlayerMovement.Instance.fighter.killCount++;
 
         Destroy(gameObject);
     }
 
     void Move()
     {
-        if (Vector2.Distance(position, PlayerMovement.Instance.position) > walkDist) return;
+        float dist = Vector2.Distance(position, PlayerMovement.Instance.position);
+        int extra = heardRecently ? 2 : 0;
+
+        bool notHeard = PlayerMovement.Instance.lastMove == 0 && dist > walkDist + extra ||
+            PlayerMovement.Instance.lastMove == 1 && dist > runDist + extra;
+
+        if (notHeard) return;
+
+        heardRecently = true;
 
         Vector2 newPos = Vector2.zero;
 
@@ -57,7 +72,7 @@ public class AIMovement : MonoBehaviour
             //Moving
             if (position.x - PlayerMovement.Instance.position.x != 0)
             {
-                if (position.x > PlayerMovement.Instance.position.x) newPos = Vector2.left;
+                if (position.x > PlayerMovement.Instance.position.x) newPos += Vector2.left;
                 else newPos = Vector2.right;
             }
             else if (position.y - PlayerMovement.Instance.position.y != 0)
@@ -92,7 +107,7 @@ public class AIMovement : MonoBehaviour
             if (MapGenerator.Instance.GetTile((int)(position.x + newPos.x), (int)(position.y + newPos.y)) == 0 && canWalk)
             {
                 position = position + newPos;
-                sprite.transform.localScale = new Vector3(-newPos.x, 1, 1);
+                if (newPos.x != 0) sprite.transform.localScale = new Vector3(-newPos.x, 1, 1);
             }
 
             if (areaAttack != null) areaAttack.OnMove();

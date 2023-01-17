@@ -51,14 +51,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8565b823e01992f4db3221287d0adabd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canWalk: 1
+  canWalk: 0
   position: {x: 0, y: 4}
   lerpSpeed: 1
   walkDist: 7
+  runDist: 15
   fighter: {fileID: 2138769129395675002}
   remainsPrefab: {fileID: 6817940403122566127, guid: d85c02bfc21dad9499c9c578c6ca6f31, type: 3}
-  areaAttack: {fileID: 0}
+  areaAttack: {fileID: 8254768056094859262}
   sprite: {fileID: 8135538570551186905}
+  memoryAmount: 0
 --- !u!114 &2138769129395675003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,10 +88,10 @@ MonoBehaviour:
   canAttack: 1
   gameName: the clump
   nameColor: {r: 0.8509804, g: 0.72116476, b: 0.54901963, a: 1}
-  health: 20
-  maxHealth: 20
+  health: 40
+  maxHealth: 40
   defense: 1
-  power: 6
+  power: 7
   critRarity: 10
   critMult: 1.5
   deathFunction:
@@ -113,6 +115,9 @@ MonoBehaviour:
   fadeTimeDMG: 1
   DMGColor: {r: 1, g: 0.7028302, b: 0.7028302, a: 0}
   critColor: {r: 0.6603774, g: 0.052954797, b: 0.052954797, a: 0}
+  poisonCol: {r: 0.2784314, g: 0.7137255, b: 0.29411766, a: 0}
+  killCount: 0
+  poisons: 1
 --- !u!114 &8254768056094859262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minDist: 3
-  damageMap: {x: 2, y: 3}
+  damageMap: {x: 4, y: 2}
   hurtMessage: a hand grabs at you
 --- !u!1 &2872045424918492192
 GameObject:

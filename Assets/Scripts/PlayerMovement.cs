@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public static PlayerMovement Instance;
     public Action moveEvent;
     public UnityEvent unityMoveEvent, unityHitEvent, unityPickupEvent;
-    Fighter fighter;
+    [HideInInspector] public Fighter fighter;
     Inventory inventory;
 
     public Vector2 position;
@@ -25,6 +25,10 @@ public class PlayerMovement : MonoBehaviour
     public int dashes;
     public TextMeshProUGUI dashText;
 
+    [HideInInspector] public int lastMove;
+
+    public Transform flashLight;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -35,9 +39,18 @@ public class PlayerMovement : MonoBehaviour
         inventory = GetComponent<Inventory>();
     }
 
+    void Start()
+    {
+        transform.position = new Vector3(position.x, transform.position.y, position.y);
+    }
+
     // Update is called once per frame
     void Update()
     {
+        flashLight.gameObject.SetActive(Equipment.Instance.tool != null && Equipment.Instance.tool.name == "Flash Light");
+
+        if (PlayerManager.Instance.dead) return;
+
         //Dash UI
         dashText.color = dashes > 0 ? Color.white : Color.grey;
 
@@ -70,6 +83,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Move(int x, int y)
     {
+
+        fighter.ManageAfflictions();
+
         if (moveEvent != null) Invoke("MoveEnemies", .25f);
 
         //Dashing
@@ -83,16 +99,20 @@ public class PlayerMovement : MonoBehaviour
             movesLeft = dashWait;
         }
 
+        lastMove = canDash ? 1 : 0;
+
         Vector2Int newPosition = new Vector2Int((int)(position.x + x * (canDash ? 2 : 1)), (int)(position.y + y * (canDash ? 2 : 1)));
 
+        int tile = MapGenerator.Instance.GetTile(newPosition.x, newPosition.y);
+
         //Walls
-        if (MapGenerator.Instance.GetTile(newPosition.x, newPosition.y) == 1) return;
+        if (tile == 1 || tile > 3) return;
 
         //Ladders/Elevators etc
-        if (MapGenerator.Instance.GetTile(newPosition.x, newPosition.y) == 2) ClimbLadder();
+        if (tile == 2) { ClimbLadder(); return; }
 
         //Holes/Doors
-        if (MapGenerator.Instance.GetTile(newPosition.x, newPosition.y) == 3) { FallInHole(); return; }
+        if (tile == 3) { FallInHole(); return; }
 
         //Attacking
         if (MapGenerator.Instance.EntityAtPos(newPosition.x, newPosition.y) != null)
@@ -106,7 +126,8 @@ public class PlayerMovement : MonoBehaviour
         if (MapGenerator.Instance.ItemAtPos(newPosition.x, newPosition.y) != null)
         {
             inventory.PickUp(MapGenerator.Instance.ItemAtPos(newPosition.x, newPosition.y));
-            unityPickupEvent.Invoke();
+            if (inventory.inventory.Count < 8) unityPickupEvent.Invoke();
+            else return;
         }
 
         //Setting the position
@@ -121,10 +142,13 @@ public class PlayerMovement : MonoBehaviour
     {
         //Bunch of map Generation stuff
         MapGenerator.Instance.floor++;
-        MapGenerator.Instance.level = MapGenerator.Instance.l1;
+
+        position = new Vector2(Mathf.Floor(position.x / 10f) * 10f, Mathf.Floor(position.y / 10f) * 10f);
+        transform.position = new Vector3(position.x, transform.position.y, position.y);
+
         MapGenerator.Instance.MapGeneration((int)position.x, (int)position.y);
 
-        GUIManager.Instance.Print("<color=yellow>You enter a new level, and take a moment of rest...</color>");
+        GUIManager.Instance.Print("<color=#b6a147>You enter a new level, and take a moment of rest...</color>");
         fighter.health += ((int)fighter.health / 2);
     }
 

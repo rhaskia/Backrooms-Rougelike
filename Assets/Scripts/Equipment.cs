@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Equipment : MonoBehaviour
 {
+    public static Equipment Instance;
     Inventory inventory;
     Fighter fighter;
-    public Item armour, weapon;
+    public Item armour, weapon, tool;
 
     // Start is called before the first frame update
     void Start()
     {
+        Instance = this;
         inventory = FindObjectOfType<Inventory>();
         fighter = GetComponent<Fighter>();
     }
@@ -57,6 +59,18 @@ public class Equipment : MonoBehaviour
         fighter.power += _weapon.strength;
 
         weapon = _weapon;
+    }
+
+    public void EquipTool(Item _tool)
+    {
+        if (tool != null)
+        {
+            inventory.inventory.Add(tool);
+        }
+
+        GUIManager.Instance.Print("You equipped the <color=#" + ColorUtility.ToHtmlStringRGB(_tool.nameColor) + ">" + _tool.name + "</color>");
+
+        tool = _tool;
     }
 
     public void Unequip(int n)
