@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Equipment : MonoBehaviour
 {
@@ -8,6 +10,9 @@ public class Equipment : MonoBehaviour
     Inventory inventory;
     Fighter fighter;
     public Item armour, weapon, tool;
+
+    public TextMeshProUGUI arText, weText, toText;
+    public Image arImage, weImage, toImage;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +25,18 @@ public class Equipment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (armour != null) arImage.sprite = armour.sprite;
+        arImage.enabled = armour != null;
 
+        if (weapon != null) weImage.sprite = weapon.sprite;
+        weImage.enabled = weapon != null;
+
+        if (tool != null) toImage.sprite = tool.sprite;
+        toImage.enabled = tool != null;
+
+        arText.text = "+" + (armour == true ? armour.strength : "0");
+        weText.text = "+" + (weapon == true ? weapon.strength : "0");
+        toText.text = "+" + (tool == true ? tool.strength : "0");
     }
 
     public void EquipArmour(Item _armour)

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1538845657312542116}
   - component: {fileID: 2897606208064329295}
   - component: {fileID: 7085335017219878670}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 8213898750369156688}
   - component: {fileID: 686848214562338173}
   - component: {fileID: 3065326765595113961}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 3269062169643780565}
   - component: {fileID: 3269062169643780571}
   - component: {fileID: 3269062169643780570}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hound
   m_TagString: Entity
   m_Icon: {fileID: 0}
@@ -323,7 +323,8 @@ MonoBehaviour:
   critColor: {r: 0.6603774, g: 0.052954797, b: 0.052954797, a: 0}
   poisonCol: {r: 0.2784314, g: 0.7137255, b: 0.29411766, a: 0}
   killCount: 0
-  poisons: 1
+  poisons: 0
+  bleeds: 1
 --- !u!1 &4618257463450993529
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,7 +335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4474885842838724589}
   - component: {fileID: 4576425840475523609}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: backrooms0_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +420,7 @@ GameObject:
   - component: {fileID: 2375066359501842079}
   - component: {fileID: 8901284680663216805}
   - component: {fileID: 5872631033184132532}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 985949967369813416}
   - component: {fileID: 5714414863413898908}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}

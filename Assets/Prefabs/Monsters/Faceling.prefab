@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 44401710071690319}
   - component: {fileID: 4463332866513575844}
   - component: {fileID: 8616096710109488869}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 7222381282246608827}
   - component: {fileID: 2039708598046784662}
   - component: {fileID: 4561186091657408514}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 4078192390713835582}
   - component: {fileID: 4078192390713835568}
   - component: {fileID: 4078192390713835569}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Faceling
   m_TagString: Entity
   m_Icon: {fileID: 0}
@@ -323,7 +323,8 @@ MonoBehaviour:
   critColor: {r: 0.6603774, g: 0.052954797, b: 0.052954797, a: 0}
   poisonCol: {r: 0.2784314, g: 0.7137255, b: 0.29411766, a: 0}
   killCount: 0
-  poisons: 1
+  poisons: 0
+  bleeds: 0
 --- !u!1 &5403762802310819389
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +336,7 @@ GameObject:
   - component: {fileID: 3833480977421463412}
   - component: {fileID: 7944661625354894158}
   - component: {fileID: 4952105990563173471}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3161333498668226054}
   - component: {fileID: 3045585534518576114}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: backrooms0_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1758761911427052611}
   - component: {fileID: 6524311700437821303}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}

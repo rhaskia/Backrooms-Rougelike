@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9024182426490764071}
   - component: {fileID: 2760160245041147677}
   - component: {fileID: 916058733819953164}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7192324097207435861}
   - component: {fileID: 7082758489309566881}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: backrooms0_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5793727102670413840}
   - component: {fileID: 1334215944937206564}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 3185198577913484264}
   - component: {fileID: 6071297119283767493}
   - component: {fileID: 8593855640190886993}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 5229430851533512732}
   - component: {fileID: 8502766553576475639}
   - component: {fileID: 4583981587088896694}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -566,7 +566,7 @@ GameObject:
   - component: {fileID: 8113149958419551341}
   - component: {fileID: 8113149958419551331}
   - component: {fileID: 8113149958419551330}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Death Rat
   m_TagString: Entity
   m_Icon: {fileID: 0}
@@ -670,4 +670,5 @@ MonoBehaviour:
   critColor: {r: 0.6603774, g: 0.052954797, b: 0.052954797, a: 0}
   poisonCol: {r: 0.2784314, g: 0.7137255, b: 0.29411766, a: 0}
   killCount: 0
-  poisons: 1
+  poisons: 0
+  bleeds: 0

@@ -143,6 +143,10 @@ public class MapGenerator : MonoBehaviour
         Random.InitState(CantorPair(x, y));
         if (Random.Range(0f, 1f) < l2_blockAmount) return 1;
 
+        //Ladders
+        Random.InitState(CantorPair(x, y));
+        if (Random.Range(0, l2.ladderRarity) == 0) return 2;
+
         if (x % 10 == 0 || x % 10 == 1 || x % 10 == 5) return 0;
         if (y % 10 == 0 || y % 10 == 1 || y % 10 == 5) return 0;
 
@@ -156,8 +160,13 @@ public class MapGenerator : MonoBehaviour
         if (y % 8 == 7 && x % 9 == Random.Range(4, 5) && Random.Range(0, 2) == 0) return 0;
 
         bool room = x % 9 > 1 && x % 9 < 8 && y % 8 > 1 && y % 8 < 7;
+        if (room == true) print("a");
 
         if (room && Random.Range(0, 10) == 0) return 5; //Machines
+
+        //Ladders
+        Random.InitState(CantorPair(x, y));
+        if (room && Random.Range(0, l2.ladderRarity) == 0) return 2;
 
         if (room) return 0;
         if (!(x % 9 == 0 || y % 8 == 0)) return 1;

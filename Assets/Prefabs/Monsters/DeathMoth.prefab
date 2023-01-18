@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8134637683911974545}
   - component: {fileID: 8178341377012239205}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: backrooms0_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7928617303024969699}
   - component: {fileID: 3853465451204539353}
   - component: {fileID: 2270434232115911880}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4851284365090847956}
   - component: {fileID: 121697391630397408}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 4539721110622605100}
   - component: {fileID: 5149261335755666433}
   - component: {fileID: 7239482916056397973}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 6604219685259181272}
   - component: {fileID: 7407199102622226227}
   - component: {fileID: 3218349151037238898}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -566,7 +566,7 @@ GameObject:
   - component: {fileID: 7179863232894388393}
   - component: {fileID: 7179863232894388391}
   - component: {fileID: 7179863232894388390}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DeathMoth
   m_TagString: Entity
   m_Icon: {fileID: 0}
@@ -671,3 +671,4 @@ MonoBehaviour:
   poisonCol: {r: 0.2784314, g: 0.7137255, b: 0.29411766, a: 0}
   killCount: 0
   poisons: 1
+  bleeds: 0

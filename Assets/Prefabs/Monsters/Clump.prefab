@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2138769129395675003}
   - component: {fileID: 2138769129395675002}
   - component: {fileID: 8254768056094859262}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Clump
   m_TagString: Entity
   m_Icon: {fileID: 0}
@@ -117,7 +117,8 @@ MonoBehaviour:
   critColor: {r: 0.6603774, g: 0.052954797, b: 0.052954797, a: 0}
   poisonCol: {r: 0.2784314, g: 0.7137255, b: 0.29411766, a: 0}
   killCount: 0
-  poisons: 1
+  poisons: 0
+  bleeds: 1
 --- !u!114 &8254768056094859262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +146,7 @@ GameObject:
   - component: {fileID: 2714393428061219588}
   - component: {fileID: 1785176933237932271}
   - component: {fileID: 5954971608505170350}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +248,7 @@ GameObject:
   - component: {fileID: 4687619308958587120}
   - component: {fileID: 4141140430951752669}
   - component: {fileID: 1907942927203659593}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +351,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4422158584727005960}
   - component: {fileID: 9204736976321067068}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -479,7 +480,7 @@ GameObject:
   - component: {fileID: 1154482592753135679}
   - component: {fileID: 5438046838352831493}
   - component: {fileID: 7030017070726794004}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -613,7 +614,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1074558757056923981}
   - component: {fileID: 1113196725256592569}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: backrooms0_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

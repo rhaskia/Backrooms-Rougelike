@@ -134,7 +134,7 @@ TextureImporter:
         x: 63
         y: 151
         width: 12
-        height: 21
+        height: 23
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,7 +176,7 @@ TextureImporter:
         x: 97
         y: 156
         width: 9
-        height: 11
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,7 +197,7 @@ TextureImporter:
         x: 114
         y: 149
         width: 5
-        height: 19
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,7 +239,7 @@ TextureImporter:
         x: 159
         y: 151
         width: 18
-        height: 10
+        height: 11
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -304,7 +304,7 @@ TextureImporter:
         width: 15
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -312,6 +312,27 @@ TextureImporter:
       bones: []
       spriteID: 1d268fd88af1f774c80951a22a0da8c9
       internalID: 1987542843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: backrooms0_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 155
+        width: 7
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed6b08863388d73448320c76317633eb
+      internalID: 372036834
       vertices: []
       indices: 
       edges: []
@@ -333,6 +354,7 @@ TextureImporter:
       backrooms0_7: -729112256
       backrooms0_4: -750773609
       backrooms0_6: 1774925970
+      backrooms0_10: 372036834
       backrooms0_9: 1987542843
       backrooms0_8: -1702281415
       backrooms0_2: -480650299

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8028129824699612261}
   - component: {fileID: 1665250086511069000}
   - component: {fileID: 3755507984528837596}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 850924239991279505}
   - component: {fileID: 3936807503137023098}
   - component: {fileID: 8989235734669024571}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 3731811010294463456}
   - component: {fileID: 3731811010294463470}
   - component: {fileID: 3731811010294463471}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Duller
   m_TagString: Entity
   m_Icon: {fileID: 0}
@@ -323,7 +323,8 @@ MonoBehaviour:
   critColor: {r: 0.6603774, g: 0.052954797, b: 0.052954797, a: 0}
   poisonCol: {r: 0.2784314, g: 0.7137255, b: 0.29411766, a: 0}
   killCount: 0
-  poisons: 1
+  poisons: 0
+  bleeds: 0
 --- !u!1 &4732348261253879267
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +336,7 @@ GameObject:
   - component: {fileID: 4495131926123861162}
   - component: {fileID: 7283362586936574096}
   - component: {fileID: 5758909999721426817}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2345803769601895896}
   - component: {fileID: 2384304023902713900}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: backrooms0_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1385640472610181021}
   - component: {fileID: 5897933084854607017}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}

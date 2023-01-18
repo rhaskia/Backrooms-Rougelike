@@ -136,7 +136,11 @@ public class SaveManager : MonoBehaviour
 
         PlayerPrefs.DeleteKey("chat");
 
-        PlayerPrefs.DeleteKey
+        PlayerPrefs.DeleteKey("pLeft");
+        PlayerPrefs.DeleteKey("pdmg");
+
+        PlayerPrefs.DeleteKey("bLeft");
+        PlayerPrefs.DeleteKey("bdmg");
 
         PlayerPrefs.Save();
     }
