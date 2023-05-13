@@ -159,7 +159,7 @@ public class MapGenerator : MonoBehaviour
         if (y % 8 == 1 && x % 9 == Random.Range(4, 5) && Random.Range(0, 2) == 0) return 0;
         if (y % 8 == 7 && x % 9 == Random.Range(4, 5) && Random.Range(0, 2) == 0) return 0;
 
-        bool room = x % 9 > 1 && x % 9 < 8 && y % 8 > 1 && y % 8 < 7;
+        bool room = (Mathf.Abs(y) % 8 > 1 && Mathf.Abs(y) % 8 < 7) && (Mathf.Abs(x) % 9 > 1 && Mathf.Abs(x) % 9 < 8);
         if (room == true) print("a");
 
         if (room && Random.Range(0, 10) == 0) return 5; //Machines

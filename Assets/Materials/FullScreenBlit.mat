@@ -18,7 +18,8 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -47,13 +48,13 @@ Material:
     m_Floats:
     - _CRT: 0.8
     - _Grid_Cell_Offset: 0
-    - _Noise: 0.05900815
+    - _Noise: 0.1
     - _NoiseSpeed: 0.001
     - _PostSteps: 6
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ScanlinesStrength: 0
-    - _SphereStrength: 0.3556947
+    - _SphereStrength: 0.43048343
     - _Strength: 1
     m_Colors:
     - _Grid_Tiling: {r: 5, g: 5, b: 0, a: 0}
@@ -71,4 +72,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 7
+  version: 8

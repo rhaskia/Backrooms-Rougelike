@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public int lastMove;
 
     public Transform flashLight;
+    public SpriteRenderer sprite;
 
     // Start is called before the first frame update
     void Awake()
@@ -58,8 +59,8 @@ public class PlayerMovement : MonoBehaviour
         //Holding down keys
         if (Input.GetKey(KeyCode.W) && tilMove[0] < 0) { Move(0, 1); tilMove[0] = moveDelay; }
         if (Input.GetKey(KeyCode.S) && tilMove[1] < 0) { Move(0, -1); tilMove[1] = moveDelay; }
-        if (Input.GetKey(KeyCode.A) && tilMove[2] < 0) { Move(-1, 0); tilMove[2] = moveDelay; }
-        if (Input.GetKey(KeyCode.D) && tilMove[3] < 0) { Move(1, 0); tilMove[3] = moveDelay; }
+        if (Input.GetKey(KeyCode.A) && tilMove[2] < 0) { Move(-1, 0); tilMove[2] = moveDelay; sprite.flipX = false; }
+        if (Input.GetKey(KeyCode.D) && tilMove[3] < 0) { Move(1, 0); tilMove[3] = moveDelay; sprite.flipX = true; }
 
         //Numpad Keys
         //if (Input.GetKeyDown(KeyCode.Keypad8)) Move(0, 1);
