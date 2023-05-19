@@ -63,7 +63,7 @@ public class GUIManager : MonoBehaviour
         bleeding.text = "bleeding - " + p_fighter.bleeding.afflictionLeft;
 
         //Opening sub menus
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             menuOpen = !menuOpen;
 
@@ -75,7 +75,7 @@ public class GUIManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             menuOpen = !menuOpen;
 

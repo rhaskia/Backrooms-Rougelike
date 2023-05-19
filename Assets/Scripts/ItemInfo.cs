@@ -9,6 +9,7 @@ public class ItemInfo : MonoBehaviour
     public TextMeshProUGUI nameText, descText;
     Inventory inventory;
     public bool over;
+    public Vector3 offset;
 
     // Start is called before the first frame update
     void Start()
@@ -26,9 +27,16 @@ public class ItemInfo : MonoBehaviour
             {
                 nameText.text = "<color=#" + ColorUtility.ToHtmlStringRGB(inventory.inventory[currItem].nameColor) + ">" + inventory.inventory[currItem].name.ToLower() + "</color>";
                 descText.text = inventory.inventory[currItem].description;
+
+                if (Input.GetMouseButtonDown(0)) UseItem();
+                if (Input.GetMouseButtonDown(1)) DropItem();
             }
             else gameObject.SetActive(false);
         }
+
+        Vector3 newPos = Input.mousePosition + offset;
+        newPos.y = Mathf.Clamp(newPos.y, 22, 1000);
+        transform.position = newPos;
     }
 
     public void UseItem()
@@ -36,6 +44,7 @@ public class ItemInfo : MonoBehaviour
         inventory.UseItem(currItem);
         Invoke("TurnOff", 0.1f);
     }
+
     public void DropItem()
     {
         inventory.DropItem(currItem);

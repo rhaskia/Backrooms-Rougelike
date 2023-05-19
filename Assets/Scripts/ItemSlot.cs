@@ -31,7 +31,7 @@ public class ItemSlot : MonoBehaviour
         {
             info.gameObject.SetActive(true);
             info.currItem = transform.GetSiblingIndex();
-            info.transform.parent = transform;
+            CancelInvoke("TurnOff");
         }
     }
 
@@ -42,9 +42,10 @@ public class ItemSlot : MonoBehaviour
 
     void TurnOff()
     {
-        if (!info.over)
+        if (!info.over && info.currItem == transform.GetSiblingIndex())
         {
             info.currItem = -1;
+            print("turned offf");
         }
     }
 }

@@ -103,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
         lastMove = canDash ? 1 : 0;
 
         Vector2Int newPosition = new Vector2Int((int)(position.x + x * (canDash ? 2 : 1)), (int)(position.y + y * (canDash ? 2 : 1)));
+        Vector2Int halfPos = new Vector2Int((int)(position.x + x), (int)(position.y + y));
 
         int tile = MapGenerator.Instance.GetTile(newPosition.x, newPosition.y);
 
@@ -134,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
         //Setting the position
         position = newPosition;
 
+        if (canDash) mapGen.GenerateNew(halfPos.x, halfPos.y, x, y);
         mapGen.GenerateNew((int)position.x, (int)position.y, x, y);
 
         unityMoveEvent.Invoke();
